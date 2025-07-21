@@ -1,49 +1,41 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
+﻿using System.Collections.Generic;
+using System.Windows;
 
 namespace Floatie
 {
     public partial class MainWindow : Window
     {
-        private bool isDragging = false;
-        private Point clickPosition;
-
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void FencePanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void LaunchFloatieWidgets(object sender, RoutedEventArgs e)
         {
-            isDragging = true;
-            clickPosition = e.GetPosition(MainCanvas);
-            FencePanel.CaptureMouse();
-        }
-
-        private void FencePanel_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (isDragging)
+            var fileTypes = new Dictionary<string, (string IconPath, string Label)>
             {
-                Point currentPosition = e.GetPosition(MainCanvas);
+                { "Folder",     ("/Assets/folder.png",    "Folder") },
+                { "PDF",        ("/Assets/pdf.png",       "PDF") },
+                { "Image",      ("/Assets/picture.png",   "Image") },
+                { "Document",   ("/Assets/documents.png", "Document") },
+                { "Executable", ("/Assets/exe.png",       "EXE") },
+                { "Script",     ("/Assets/code.png",      "Script") },
+                { "Archive",    ("/Assets/zip.png",       "Zip") }
+            };
 
-                double offsetX = currentPosition.X - clickPosition.X;
-                double offsetY = currentPosition.Y - clickPosition.Y;
+            int offset = 50;
 
-                double newLeft = Canvas.GetLeft(FencePanel) + offsetX;
-                double newTop = Canvas.GetTop(FencePanel) + offsetY;
+            foreach (var fileType in fileTypes)
+            {
+                var floatie = new FloatieWindow(fileType.Key, fileType.Value.IconPath)
+                {
+                    Left = offset,
+                    Top = offset
+                };
 
-                Canvas.SetLeft(FencePanel, newLeft);
-                Canvas.SetTop(FencePanel, newTop);
-
-                clickPosition = currentPosition;
+                offset += 60;
+                floatie.Show();
             }
-        }
-
-        private void FencePanel_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            isDragging = false;
-            FencePanel.ReleaseMouseCapture();
         }
     }
 }
