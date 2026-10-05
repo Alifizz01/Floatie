@@ -1,0 +1,34 @@
+<Window x:Class="Floatie.Views.FenceEditorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Style="{StaticResource Dialog}" Title="Fence" WindowStartupLocation="CenterScreen">
+    <StackPanel Margin="24,10,24,22" Width="460">
+        <TextBlock Style="{StaticResource Label}" Text="NAME"/>
+        <TextBox x:Name="NameBox" FontSize="14"/>
+
+        <TextBlock Style="{StaticResource Label}" Text="SHOW FILES FROM"/>
+        <WrapPanel x:Name="SourceChips"/>
+        <TextBlock x:Name="SourcePath" Foreground="{StaticResource Muted}" FontSize="11.5" TextTrimming="CharacterEllipsis"/>
+
+        <TextBlock Style="{StaticResource Label}" Text="WHICH FILES"/>
+        <WrapPanel x:Name="FilterChips"/>
+        <TextBox x:Name="PatternBox" FontFamily="Cascadia Mono, Consolas" FontSize="12" TextChanged="OnPatternChanged"/>
+        <TextBlock Foreground="{StaticResource Muted}" FontSize="11.5" Margin="0,5,0,0" TextWrapping="Wrap"
+                   Text="Patterns separated by ; like *.pdf;report*.xlsx. Start one with ! to exclude it (!*.tmp)."/>
+        <CheckBox x:Name="FoldersBox" Content="Also show folders" Margin="0,12,0,0"/>
+
+        <TextBlock Style="{StaticResource Label}" Text="SORT BY"/>
+        <WrapPanel x:Name="SortChips"/>
+
+        <TextBlock Style="{StaticResource Label}" Text="COLOUR"/>
+        <WrapPanel x:Name="Swatches"/>
+
+        <DockPanel Margin="0,22,0,0">
+            <Button x:Name="DeleteButton" Content="Delete fence" Style="{StaticResource Ghost}" Foreground="{StaticResource Danger}" Click="OnDelete"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Cancel" Style="{StaticResource Ghost}" IsCancel="True" Margin="0,0,8,0"/>
+                <Button Content="Save" Style="{StaticResource Primary}" IsDefault="True" Click="OnSave"/>
+            </StackPanel>
+        </DockPanel>
+    </StackPanel>
+</Window>

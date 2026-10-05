@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>Floatie</title>
+  <defs>
+    <filter id="lift" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="2.4" stdDeviation="1.8" flood-color="#000" flood-opacity="0.55"/>
+    </filter>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#1B2430"/>
+  <!-- two fences resting on the desktop -->
+  <rect x="9" y="12" width="20" height="40" rx="4" fill="#2A3442"/>
+  <rect x="9" y="12" width="20" height="6" rx="3" fill="#3DBFA7"/>
+  <rect x="13" y="23" width="5" height="5" rx="1.4" fill="#C9CEC6" opacity="0.8"/>
+  <rect x="20" y="23" width="5" height="5" rx="1.4" fill="#C9CEC6" opacity="0.8"/>
+  <rect x="13" y="31" width="5" height="5" rx="1.4" fill="#C9CEC6" opacity="0.8"/>
+  <rect x="33" y="38" width="22" height="14" rx="4" fill="#2A3442"/>
+  <rect x="33" y="38" width="22" height="5" rx="2.5" fill="#F2A541"/>
+  <!-- the floating one -->
+  <g filter="url(#lift)">
+    <rect x="33" y="9" width="22" height="22" rx="4" fill="#33405A"/>
+    <rect x="33" y="9" width="22" height="6" rx="3" fill="#7F8FF2"/>
+    <rect x="37" y="19" width="5" height="5" rx="1.4" fill="#F1F3F6"/>
+    <rect x="45" y="19" width="5" height="5" rx="1.4" fill="#F1F3F6"/>
+  </g>
+</svg>

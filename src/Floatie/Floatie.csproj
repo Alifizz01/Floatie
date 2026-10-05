@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>Floatie</AssemblyName>
+    <RootNamespace>Floatie</RootNamespace>
+    <Version>1.0.0</Version>
+    <Authors>Muhamad Alif Izzuwan Bin Ibrahim</Authors>
+    <Product>Floatie</Product>
+    <Description>Floating desktop fences: live, filtered views of your folders.</Description>
+    <ApplicationIcon>Assets\floatie.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <!-- WPF reads DPI awareness from the manifest; this warning is aimed at WinForms apps. -->
+    <NoWarn>$(NoWarn);WFAC010</NoWarn>
+    <!-- Idle background app: no background GC thread, small heap. -->
+    <ConcurrentGarbageCollection>false</ConcurrentGarbageCollection>
+    <ServerGarbageCollection>false</ServerGarbageCollection>
+    <TieredPGO>false</TieredPGO>
+  </PropertyGroup>
+
+  <!-- WinForms is only here for the tray icon; keep its names out of the way of WPF's. -->
+  <ItemGroup>
+    <Using Remove="System.Windows.Forms" />
+    <Using Remove="System.Drawing" />
+    <Using Include="System.IO" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\floatie.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Floatie.Tests" />
+  </ItemGroup>
+
+</Project>
